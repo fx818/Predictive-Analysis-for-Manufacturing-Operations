@@ -1,5 +1,3 @@
-# Saving the README content to a file for download
-readme_content = """
 # Flask API for Manufacturing Data Predictions
 
 ## Overview
@@ -17,65 +15,46 @@ This API allows users to:
 ## Setup Instructions
 
 1. **Clone the repository:**
-   ```bash
    git clone <repository-url>
    cd <repository-folder>
 
-Install dependencies:
-pip install flask pandas scikit-learn
+### Install dependencies:
+`pip install flask pandas scikit-learn`
 
 
-Run the application:
+2. **Run the application:**
 
-bash
-
-Copy
 python app.py
 Access the API: The application will be available at http://127.0.0.1:5000 by default.
 
-Endpoints
-1. Upload Endpoint
-POST /upload
+3. **Endpoints**
 
+**1. Upload Endpoint**
+
+`1. POST /upload`
 Uploads a CSV file containing manufacturing data.
 
 Request:
-
 File: A CSV file with the following columns: Machine_ID, Temperature, Run_Time, Downtime_Flag.
 Example:
+`curl -X POST -F "file=@manufacturing_data.csv" http://127.0.0.1:5000/upload`
 
-bash
-
-Copy
-curl -X POST -F "file=@manufacturing_data.csv" http://127.0.0.1:5000/upload
-Response:
-
-json
-
-Copy
+`Response:
 {
     "message": "File uploaded and processed successfully."
-}
+}`
 
 
-2. Train Endpoint
-POST /train
-
+**2. Train Endpoint**
+`POST /train`
 Trains a Decision Tree model on the uploaded dataset and evaluates its performance.
 
 Request: No additional input required.
 
 Example:
+`curl -X POST http://127.0.0.1:5000/train`
 
-bash
-
-Copy
-curl -X POST http://127.0.0.1:5000/train
-Response:
-
-json
-
-Copy
+`Response:
 {
     "accuracy": 0.95,
     "classification_report": {
@@ -105,60 +84,33 @@ Copy
             "support": 30
         }
     }
-}
-3. Predict Endpoint
-POST /predict
+}`
 
+**3. Predict Endpoint**
+
+`POST /predict`
 Predicts downtime based on input parameters.
 
-Request:
-
-json
-
-Copy
+`Request:
 {
     "Machine_ID": "M3",
     "Temperature": 80,
     "Run_Time": 120
-}
+}`
+
 Example:
+`curl -X POST -H "Content-Type: application/json" -d '{"Machine_ID": "M3", "Temperature": 80, "Run_Time": 120}' http://127.0.0.1:5000/predict`
 
-bash
-
-Copy
-curl -X POST -H "Content-Type: application/json" -d '{"Machine_ID": "M3", "Temperature": 80, "Run_Time": 120}' http://127.0.0.1:5000/predict
-Response:
-
-json
-
-Copy
+`Response:
 {
     "Downtime": "No",
     "Confidence": 0.85
-}
-Example Workflow
-Upload the dataset:
+}`
 
-bash
-
-Copy
-curl -X POST -F "file=@manufacturing_data.csv" http://127.0.0.1:5000/upload
-Train the model:
-
-bash
-
-Copy
-curl -X POST http://127.0.0.1:5000/train
-Predict downtime:
-
-bash
-
-Copy
-curl -X POST -H "Content-Type: application/json" -d '{"Machine_ID": "M3", "Temperature": 80, "Run_Time": 120}' http://127.0.0.1:5000/predict
-"""
-
-file_path = "/mnt/data/Flask_API_README.md"
-
-with open(file_path, "w") as file: file.write(readme_content)
-
-file_path
+## Example Workflow
+**1. Upload the dataset:**
+`curl -X POST -F "file=@manufacturing_data.csv" http://127.0.0.1:5000/upload`
+**2. Train the model:**
+`curl -X POST http://127.0.0.1:5000/train`
+**3. Predict downtime:**
+`curl -X POST -H "Content-Type: application/json" -d '{"Machine_ID": "M3", "Temperature": 80, "Run_Time": 120}' http://127.0.0.1:5000/predict`
