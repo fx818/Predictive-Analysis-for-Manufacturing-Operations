@@ -15,10 +15,10 @@ This API allows users to:
 ## Setup Instructions
 
 1. **Clone the repository:**
-   ```
-   git clone <repository-url>
-   cd <repository-folder>
-   ```
+```
+git clone <repository-url>
+cd <repository-folder>
+```
 
 ### Install dependencies:
 ```
@@ -34,7 +34,7 @@ Access the API: The application will be available at `http://127.0.0.1:5000` by 
 
 3. **Endpoints**
 
-   1. **Upload Endpoint** `POST /upload`
+   ### 1. **Upload Endpoint** `POST /upload`
 
    Uploads a CSV file containing manufacturing data.
 
@@ -56,7 +56,7 @@ Access the API: The application will be available at `http://127.0.0.1:5000` by 
    ```
    
    
-   2. **Train Endpoint**  `POST /train`
+   ### 2. **Train Endpoint**  `POST /train`
    
    Trains a Decision Tree model on the uploaded dataset and evaluates its performance.
    
@@ -100,7 +100,7 @@ Access the API: The application will be available at `http://127.0.0.1:5000` by 
    }
    ```
    
-   3. **Predict Endpoint** `POST /predict`
+   ### 3. **Predict Endpoint** `POST /predict`
    
    Predicts downtime based on input parameters.
    
