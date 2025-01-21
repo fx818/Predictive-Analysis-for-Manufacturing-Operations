@@ -15,28 +15,35 @@ This API allows users to:
 ## Setup Instructions
 
 1. **Clone the repository:**
-   git clone <repository-url>
+   ```git clone <repository-url>
    cd <repository-folder>
 
 ### Install dependencies:
+
 `pip install flask pandas scikit-learn`
 
 
 2. **Run the application:**
 
 python app.py
+
 Access the API: The application will be available at http://127.0.0.1:5000 by default.
+
 
 3. **Endpoints**
 
-**1. Upload Endpoint**
+1. **Upload Endpoint**
 
 `1. POST /upload`
+
 Uploads a CSV file containing manufacturing data.
 
 Request:
+
 File: A CSV file with the following columns: Machine_ID, Temperature, Run_Time, Downtime_Flag.
+
 Example:
+
 `curl -X POST -F "file=@manufacturing_data.csv" http://127.0.0.1:5000/upload`
 
 `Response:
@@ -45,13 +52,16 @@ Example:
 }`
 
 
-**2. Train Endpoint**
+2. **Train Endpoint**
+
 `POST /train`
+
 Trains a Decision Tree model on the uploaded dataset and evaluates its performance.
 
 Request: No additional input required.
 
 Example:
+
 `curl -X POST http://127.0.0.1:5000/train`
 
 `Response:
@@ -86,9 +96,10 @@ Example:
     }
 }`
 
-**3. Predict Endpoint**
+3. **Predict Endpoint**
 
 `POST /predict`
+
 Predicts downtime based on input parameters.
 
 `Request:
@@ -99,6 +110,7 @@ Predicts downtime based on input parameters.
 }`
 
 Example:
+
 `curl -X POST -H "Content-Type: application/json" -d '{"Machine_ID": "M3", "Temperature": 80, "Run_Time": 120}' http://127.0.0.1:5000/predict`
 
 `Response:
@@ -108,9 +120,15 @@ Example:
 }`
 
 ## Example Workflow
+
 **1. Upload the dataset:**
+
 `curl -X POST -F "file=@manufacturing_data.csv" http://127.0.0.1:5000/upload`
+
 **2. Train the model:**
+
 `curl -X POST http://127.0.0.1:5000/train`
+
 **3. Predict downtime:**
+
 `curl -X POST -H "Content-Type: application/json" -d '{"Machine_ID": "M3", "Temperature": 80, "Run_Time": 120}' http://127.0.0.1:5000/predict`
