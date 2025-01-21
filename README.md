@@ -15,19 +15,21 @@ This API allows users to:
 ## Setup Instructions
 
 1. **Clone the repository:**
-   ```git clone <repository-url>
+   ```
+   git clone <repository-url>
    cd <repository-folder>
+   ```
 
 ### Install dependencies:
-
-`pip install flask pandas scikit-learn`
-
+```
+pip install flask pandas scikit-learn
+```
 
 2. **Run the application:**
-
+```
 python app.py
-
-Access the API: The application will be available at http://127.0.0.1:5000 by default.
+```
+Access the API: The application will be available at `http://127.0.0.1:5000` by default.
 
 
 3. **Endpoints**
@@ -44,12 +46,16 @@ File: A CSV file with the following columns: Machine_ID, Temperature, Run_Time, 
 
 Example:
 
-`curl -X POST -F "file=@manufacturing_data.csv" http://127.0.0.1:5000/upload`
+```
+curl -X POST -F "file=@manufacturing_data.csv" http://127.0.0.1:5000/upload`
+```
 
-`Response:
+```
+Response:
 {
     "message": "File uploaded and processed successfully."
-}`
+}
+```
 
 
 2. **Train Endpoint**
@@ -61,10 +67,11 @@ Trains a Decision Tree model on the uploaded dataset and evaluates its performan
 Request: No additional input required.
 
 Example:
-
-`curl -X POST http://127.0.0.1:5000/train`
-
-`Response:
+```
+curl -X POST http://127.0.0.1:5000/train
+```
+```
+Response:
 {
     "accuracy": 0.95,
     "classification_report": {
@@ -94,7 +101,8 @@ Example:
             "support": 30
         }
     }
-}`
+}
+```
 
 3. **Predict Endpoint**
 
@@ -102,33 +110,45 @@ Example:
 
 Predicts downtime based on input parameters.
 
-`Request:
+```
+Request:
 {
     "Machine_ID": "M3",
     "Temperature": 80,
     "Run_Time": 120
-}`
+}
+```
 
 Example:
 
-`curl -X POST -H "Content-Type: application/json" -d '{"Machine_ID": "M3", "Temperature": 80, "Run_Time": 120}' http://127.0.0.1:5000/predict`
+```
+curl -X POST -H "Content-Type: application/json" -d '{"Machine_ID": "M3", "Temperature": 80, "Run_Time": 120}' http://127.0.0.1:5000/predict
+```
 
-`Response:
+```
+Response:
 {
     "Downtime": "No",
     "Confidence": 0.85
-}`
+}
+```
 
 ## Example Workflow
 
 **1. Upload the dataset:**
 
-`curl -X POST -F "file=@manufacturing_data.csv" http://127.0.0.1:5000/upload`
+```
+curl -X POST -F "file=@manufacturing_data.csv" http://127.0.0.1:5000/upload
+```
 
 **2. Train the model:**
 
-`curl -X POST http://127.0.0.1:5000/train`
+```
+curl -X POST http://127.0.0.1:5000/train
+```
 
 **3. Predict downtime:**
 
-`curl -X POST -H "Content-Type: application/json" -d '{"Machine_ID": "M3", "Temperature": 80, "Run_Time": 120}' http://127.0.0.1:5000/predict`
+```
+curl -X POST -H "Content-Type: application/json" -d '{"Machine_ID": "M3", "Temperature": 80, "Run_Time": 120}' http://127.0.0.1:5000/predict
+```
