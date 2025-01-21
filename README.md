@@ -14,7 +14,7 @@ This API allows users to:
 
 ## Setup Instructions
 
-1. **Clone the repository:**
+## 1. **Clone the repository:**
 ```
 git clone <repository-url>
 cd <repository-folder>
@@ -25,14 +25,14 @@ cd <repository-folder>
 pip install flask pandas scikit-learn
 ```
 
-2. **Run the application:**
+## 2. **Run the application:**
 ```
 python app.py
 ```
 Access the API: The application will be available at `http://127.0.0.1:5000` by default.
 
 
-3. **Endpoints**
+## 3. **Endpoints**
 
    ### 1. **Upload Endpoint** `POST /upload`
 
