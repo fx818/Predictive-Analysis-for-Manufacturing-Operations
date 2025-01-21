@@ -20,7 +20,7 @@ git clone <repository-url>
 cd <repository-folder>
 ```
 
-### Install dependencies:
+#### Install dependencies:
 ```
 pip install flask pandas scikit-learn
 ```
